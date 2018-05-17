@@ -11,8 +11,8 @@
     },
     "keywords": ["BigQuery"],
     "logos": {
-      "small": "img/bigquery.png",
-      "large": "img/bigquery.png"
+      "small": "./img/bigquery.png",
+      "large": "./img/bigquery.png"
     },
     "links": [
       {"name": "google cloud big query", "url": "https://cloud.google.com/bigquery/"}
