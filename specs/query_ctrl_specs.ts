@@ -1,14 +1,14 @@
 import {describe, beforeEach, it, sinon, expect} from './lib/common';
-import {ChangeMyNameQueryCtrl} from '../src/query_ctrl';
+import {BigQueryQueryCtrl} from '../src/query_ctrl';
 import TemplateSrvStub from './lib/template_srv_stub';
 import Q from 'q';
 import moment from 'moment';
 
-describe('ChangeMyNameQueryCtrl', function() {
+describe('BigQueryQueryCtrl', function() {
   let queryCtrl;
 
   beforeEach(function() {
-    queryCtrl = new ChangeMyNameQueryCtrl({}, {}, new TemplateSrvStub());
+    queryCtrl = new BigQueryQueryCtrl({}, {}, new TemplateSrvStub());
     queryCtrl.datasource = {$q: Q};
   });
 
