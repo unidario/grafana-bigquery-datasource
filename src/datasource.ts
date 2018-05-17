@@ -2,11 +2,6 @@
 
 import _ from 'lodash';
 
-export class GenericDatasource {
-
-
-
-}
 
 export default class ChangeMyNameDatasource {
   name: string;
@@ -53,18 +48,4 @@ export default class ChangeMyNameDatasource {
     throw new Error("Template Variable Support not implemented yet.");
   }
 
-  testDatasource() {
-    if (this.basicAuth || this.withCredentials) {
-      options.withCredentials = true;
-    }
-    if (this.basicAuth) {
-      options.headers = {
-        Authorization: this.basicAuth,
-};
-    return this.$q.when({
-      status: 'error',
-      message: 'Data Source is just a template and has not been implemented yet.',
-      title: 'Error'
-    });
-  }
 }

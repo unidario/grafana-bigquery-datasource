@@ -3,12 +3,14 @@ export default class ChangeMyNameDatasource {
     private backendSrv;
     private templateSrv;
     private $q;
-    id: number;
     name: string;
+    url: string;
+    authToken: string;
     /** @ngInject */
     constructor(instanceSettings: any, backendSrv: any, templateSrv: any, $q: any);
+    doRequest(options: any): any;
+    testDatasource(): any;
     query(options: any): void;
     annotationQuery(options: any): void;
     metricFindQuery(query: string): void;
-    testDatasource(): any;
 }

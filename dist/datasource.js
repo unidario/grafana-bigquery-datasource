@@ -11,8 +11,26 @@ System.register([], function(exports_1) {
                     this.templateSrv = templateSrv;
                     this.$q = $q;
                     this.name = instanceSettings.name;
-                    this.id = instanceSettings.id;
+                    this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
+                    this.authToken = instanceSettings.authToken;
                 }
+                ChangeMyNameDatasource.prototype.doRequest = function (options) {
+                    options.url = this.url;
+                    options.headers = {
+                        Authorization: this.authToken,
+                    };
+                    return this.backendSrv.datasourceRequest(options);
+                };
+                ChangeMyNameDatasource.prototype.testDatasource = function () {
+                    return this.doRequest({
+                        url: this.url + '/',
+                        method: 'GET',
+                    }).then(function (response) {
+                        if (response.status === 200) {
+                            return { status: "success", message: "Data source is working", title: "Success" };
+                        }
+                    });
+                };
                 ChangeMyNameDatasource.prototype.query = function (options) {
                     throw new Error("Query Support not implemented yet.");
                 };
@@ -21,13 +39,6 @@ System.register([], function(exports_1) {
                 };
                 ChangeMyNameDatasource.prototype.metricFindQuery = function (query) {
                     throw new Error("Template Variable Support not implemented yet.");
-                };
-                ChangeMyNameDatasource.prototype.testDatasource = function () {
-                    return this.$q.when({
-                        status: 'error',
-                        message: 'Data Source is just a template and has not been implemented yet.',
-                        title: 'Error'
-                    });
                 };
                 return ChangeMyNameDatasource;
             })();
