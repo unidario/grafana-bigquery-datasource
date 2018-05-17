@@ -27,6 +27,7 @@ export default class BigQueryDatasource {
     return this.doRequest({
       url: this.url + '/',
       method: 'GET',
+      authToken: this.authToken,
     }).then(response => {
       if (response.status === 200) {
         return { status: "success", message: "Data source is working", title: "Success" };
