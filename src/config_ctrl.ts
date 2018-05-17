@@ -4,6 +4,8 @@ export class BigQueryConfigCtrl {
   static templateUrl = 'partials/config.html';
   current: any;
 
+  /** @ngInject */
   constructor($scope) {
+    this.current.jsonData.authToken = this.current.jsonData.authToken;
   }
 }

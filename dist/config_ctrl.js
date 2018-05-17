@@ -5,7 +5,9 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             BigQueryConfigCtrl = (function () {
+                /** @ngInject */
                 function BigQueryConfigCtrl($scope) {
+                    this.current.jsonData.authToken = this.current.jsonData.authToken;
                 }
                 BigQueryConfigCtrl.templateUrl = 'partials/config.html';
                 return BigQueryConfigCtrl;

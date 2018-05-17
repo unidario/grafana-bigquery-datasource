@@ -2,5 +2,6 @@
 export declare class BigQueryConfigCtrl {
     static templateUrl: string;
     current: any;
+    /** @ngInject */
     constructor($scope: any);
 }
