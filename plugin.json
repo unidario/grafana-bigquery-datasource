@@ -1,0 +1,29 @@
+{
+  "type": "datasource",
+  "name": "BigQuery",
+  "id": "bigquery",
+
+  "info": {
+    "description": "BigQuery Data Source for Grafana",
+    "author": {
+      "name": "Trivago",
+      "url": "https://trivago.com"
+    },
+    "keywords": ["BigQuery"],
+    "logos": {
+      "small": "img/bigquery.svg",
+      "large": "img/bigquery.svg"
+    },
+    "links": [
+      {"name": "google cloud big query", "url": "https://cloud.google.com/bigquery/"}
+    ],
+    "version": "0.0.1"
+  },
+
+  "annotations": false,
+  "metrics": true,
+
+  "queryOptions": {
+    "minInterval": true
+  }
+}
