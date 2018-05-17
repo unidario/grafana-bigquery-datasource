@@ -11,14 +11,14 @@ export default class BigQueryDatasource {
   /** @ngInject */
   constructor(instanceSettings, private backendSrv, private templateSrv, private $q) {
     this.name = instanceSettings.name;
-    this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/'+ this.authToken + 'aaaaaa';
+    this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
     this.authToken = instanceSettings.jsonData.authToken;
   }
 
   doRequest(options) {
     options.url = this.url;
     options.headers = {
-      Authorization: "Bearer" + this.authToken,
+      Authorization: "Bearer " + this.authToken,
     };
     return this.backendSrv.datasourceRequest(options);
   }
