@@ -30,6 +30,9 @@ System.register([], function(exports_1) {
                         if (response.status === 200) {
                             return { status: "success", message: "Data source is working", title: "Success" };
                         }
+                        else {
+                            return { status: "error", message: "Data source hates you", title: "I want to die" };
+                        }
                     });
                 };
                 BigQueryDatasource.prototype.query = function (options) {
