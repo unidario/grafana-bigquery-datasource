@@ -12,7 +12,7 @@ System.register([], function(exports_1) {
                     this.$q = $q;
                     this.name = instanceSettings.name;
                     this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
-                    this.authToken = 'Hello World'; // instanceSettings.authToken;
+                    this.authToken = instanceSettings.authToken;
                 }
                 BigQueryDatasource.prototype.doRequest = function (options) {
                     options.url = this.url;
