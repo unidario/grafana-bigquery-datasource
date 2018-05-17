@@ -3,9 +3,9 @@ export class GenericDatasource {
   constructor(instanceSettings, $q, backendSrv, templateSrv) {
     this.type = instanceSettings.type;
     this.name = instanceSettings.name;
+    // TODO: don't hardcode projectID
     this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/'
     this.q = $q;
-    this.withCredentials = instanceSettings.withCredentials;
     this.headers = {'Content-Type': 'application/json'};
     if (typeof instanceSettings.authToken === 'string' && instanceSettings.authToken.length > 0) {
       this.headers['Authorization'] = 'Bearer ' + instanceSettings.authToken;
