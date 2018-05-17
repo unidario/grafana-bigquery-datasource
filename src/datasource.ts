@@ -18,7 +18,7 @@ export default class BigQueryDatasource {
   doRequest(options) {
     options.url = this.url;
     options.headers = {
-      Authorization: this.authToken,
+      Authorization: "Bearer" + this.authToken,
     };
     return this.backendSrv.datasourceRequest(options);
   }
