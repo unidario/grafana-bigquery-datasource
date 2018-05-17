@@ -11,7 +11,7 @@ System.register([], function(exports_1) {
                     this.templateSrv = templateSrv;
                     this.$q = $q;
                     this.name = instanceSettings.name;
-                    this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/' + this.authToken;
+                    this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/' + this.authToken + 'aaaaaa';
                     this.authToken = instanceSettings.jsonData.authToken;
                 }
                 BigQueryDatasource.prototype.doRequest = function (options) {
@@ -23,7 +23,7 @@ System.register([], function(exports_1) {
                 };
                 BigQueryDatasource.prototype.testDatasource = function () {
                     return this.doRequest({
-                        url: this.url + '/',
+                        url: this.url,
                         method: 'GET',
                         authToken: this.authToken,
                     }).then(function (response) {
