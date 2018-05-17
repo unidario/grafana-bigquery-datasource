@@ -1,51 +1,20 @@
-'use strict';
+import {GenericDatasource} from './datasource';
+//import {GenericDatasourceQueryCtrl} from './query_ctrl';
+/*
+class GenericConfigCtrl {}
+GenericConfigCtrl.templateUrl = 'partials/config.html';
 
-System.register(['./datasource', './query_ctrl'], function (_export, _context) {
-  "use strict";
+class GenericQueryOptionsCtrl {}
+GenericQueryOptionsCtrl.templateUrl = 'partials/query.options.html';
 
-  var GenericDatasource, GenericDatasourceQueryCtrl, GenericConfigCtrl, GenericQueryOptionsCtrl, GenericAnnotationsQueryCtrl;
-
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  return {
-    setters: [function (_datasource) {
-      GenericDatasource = _datasource.GenericDatasource;
-    }, function (_query_ctrl) {
-      GenericDatasourceQueryCtrl = _query_ctrl.GenericDatasourceQueryCtrl;
-    }],
-    execute: function () {
-      _export('ConfigCtrl', GenericConfigCtrl = function GenericConfigCtrl() {
-        _classCallCheck(this, GenericConfigCtrl);
-      });
-
-      GenericConfigCtrl.templateUrl = 'partials/config.html';
-
-      _export('QueryOptionsCtrl', GenericQueryOptionsCtrl = function GenericQueryOptionsCtrl() {
-        _classCallCheck(this, GenericQueryOptionsCtrl);
-      });
-
-      GenericQueryOptionsCtrl.templateUrl = 'partials/query.options.html';
-
-      _export('AnnotationsQueryCtrl', GenericAnnotationsQueryCtrl = function GenericAnnotationsQueryCtrl() {
-        _classCallCheck(this, GenericAnnotationsQueryCtrl);
-      });
-
-      GenericAnnotationsQueryCtrl.templateUrl = 'partials/annotations.editor.html';
-
-      _export('Datasource', GenericDatasource);
-
-      _export('QueryCtrl', GenericDatasourceQueryCtrl);
-
-      _export('ConfigCtrl', GenericConfigCtrl);
-
-      _export('QueryOptionsCtrl', GenericQueryOptionsCtrl);
-
-      _export('AnnotationsQueryCtrl', GenericAnnotationsQueryCtrl);
-    }
-  };
-});
-//# sourceMappingURL=module.js.map
+class GenericAnnotationsQueryCtrl {}
+GenericAnnotationsQueryCtrl.templateUrl = 'partials/annotations.editor.html'
+*/
+export {
+  GenericDatasource as Datasource/*,
+  GenericDatasourceQueryCtrl as QueryCtrl,
+  GenericConfigCtrl as ConfigCtrl,
+  GenericQueryOptionsCtrl as QueryOptionsCtrl,
+  GenericAnnotationsQueryCtrl as AnnotationsQueryCtrl
+  */
+};
