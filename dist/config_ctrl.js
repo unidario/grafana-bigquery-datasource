@@ -1,16 +1,16 @@
 ///<reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
 System.register([], function(exports_1) {
-    var ChangeMyNameConfigCtrl;
+    var BigQueryConfigCtrl;
     return {
         setters:[],
         execute: function() {
-            ChangeMyNameConfigCtrl = (function () {
-                function ChangeMyNameConfigCtrl($scope) {
+            BigQueryConfigCtrl = (function () {
+                function BigQueryConfigCtrl($scope) {
                 }
-                ChangeMyNameConfigCtrl.templateUrl = 'partials/config.html';
-                return ChangeMyNameConfigCtrl;
+                BigQueryConfigCtrl.templateUrl = 'partials/config.html';
+                return BigQueryConfigCtrl;
             })();
-            exports_1("ChangeMyNameConfigCtrl", ChangeMyNameConfigCtrl);
+            exports_1("BigQueryConfigCtrl", BigQueryConfigCtrl);
         }
     }
 });

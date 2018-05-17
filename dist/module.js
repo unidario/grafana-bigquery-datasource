@@ -1,6 +1,6 @@
 System.register(['./datasource', './query_ctrl', './config_ctrl'], function(exports_1) {
     var datasource_1, query_ctrl_1, config_ctrl_1;
-    var ChangeMyNameAnnotationsQueryCtrl;
+    var BigQueryAnnotationsQueryCtrl;
     return {
         setters:[
             function (datasource_1_1) {
@@ -13,16 +13,16 @@ System.register(['./datasource', './query_ctrl', './config_ctrl'], function(expo
                 config_ctrl_1 = config_ctrl_1_1;
             }],
         execute: function() {
-            ChangeMyNameAnnotationsQueryCtrl = (function () {
-                function ChangeMyNameAnnotationsQueryCtrl() {
+            BigQueryAnnotationsQueryCtrl = (function () {
+                function BigQueryAnnotationsQueryCtrl() {
                 }
-                ChangeMyNameAnnotationsQueryCtrl.templateUrl = 'partials/annotations.editor.html';
-                return ChangeMyNameAnnotationsQueryCtrl;
+                BigQueryAnnotationsQueryCtrl.templateUrl = 'partials/annotations.editor.html';
+                return BigQueryAnnotationsQueryCtrl;
             })();
             exports_1("Datasource", datasource_1.default);
-            exports_1("QueryCtrl", query_ctrl_1.ChangeMyNameQueryCtrl);
-            exports_1("ConfigCtrl", config_ctrl_1.ChangeMyNameConfigCtrl);
-            exports_1("AnnotationsQueryCtrl", ChangeMyNameAnnotationsQueryCtrl);
+            exports_1("QueryCtrl", query_ctrl_1.BigQueryQueryCtrl);
+            exports_1("ConfigCtrl", config_ctrl_1.BigQueryConfigCtrl);
+            exports_1("AnnotationsQueryCtrl", BigQueryAnnotationsQueryCtrl);
         }
     }
 });

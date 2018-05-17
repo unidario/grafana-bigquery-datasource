@@ -1,7 +1,7 @@
-import ChangeMyNameDatasource from './datasource';
-import { ChangeMyNameQueryCtrl } from './query_ctrl';
-import { ChangeMyNameConfigCtrl } from './config_ctrl';
-declare class ChangeMyNameAnnotationsQueryCtrl {
+import BigQueryDatasource from './datasource';
+import { BigQueryQueryCtrl } from './query_ctrl';
+import { BigQueryConfigCtrl } from './config_ctrl';
+declare class BigQueryAnnotationsQueryCtrl {
     static templateUrl: string;
 }
-export { ChangeMyNameDatasource as Datasource, ChangeMyNameQueryCtrl as QueryCtrl, ChangeMyNameConfigCtrl as ConfigCtrl, ChangeMyNameAnnotationsQueryCtrl as AnnotationsQueryCtrl };
+export { BigQueryDatasource as Datasource, BigQueryQueryCtrl as QueryCtrl, BigQueryConfigCtrl as ConfigCtrl, BigQueryAnnotationsQueryCtrl as AnnotationsQueryCtrl };

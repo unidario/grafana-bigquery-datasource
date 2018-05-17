@@ -1,12 +1,12 @@
 ///<reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
 System.register([], function(exports_1) {
-    var ChangeMyNameDatasource;
+    var BigQueryDatasource;
     return {
         setters:[],
         execute: function() {
-            ChangeMyNameDatasource = (function () {
+            BigQueryDatasource = (function () {
                 /** @ngInject */
-                function ChangeMyNameDatasource(instanceSettings, backendSrv, templateSrv, $q) {
+                function BigQueryDatasource(instanceSettings, backendSrv, templateSrv, $q) {
                     this.backendSrv = backendSrv;
                     this.templateSrv = templateSrv;
                     this.$q = $q;
@@ -14,14 +14,14 @@ System.register([], function(exports_1) {
                     this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
                     this.authToken = instanceSettings.authToken;
                 }
-                ChangeMyNameDatasource.prototype.doRequest = function (options) {
+                BigQueryDatasource.prototype.doRequest = function (options) {
                     options.url = this.url;
                     options.headers = {
                         Authorization: this.authToken,
                     };
                     return this.backendSrv.datasourceRequest(options);
                 };
-                ChangeMyNameDatasource.prototype.testDatasource = function () {
+                BigQueryDatasource.prototype.testDatasource = function () {
                     return this.doRequest({
                         url: this.url + '/',
                         method: 'GET',
@@ -31,18 +31,18 @@ System.register([], function(exports_1) {
                         }
                     });
                 };
-                ChangeMyNameDatasource.prototype.query = function (options) {
+                BigQueryDatasource.prototype.query = function (options) {
                     throw new Error("Query Support not implemented yet.");
                 };
-                ChangeMyNameDatasource.prototype.annotationQuery = function (options) {
+                BigQueryDatasource.prototype.annotationQuery = function (options) {
                     throw new Error("Annotation Support not implemented yet.");
                 };
-                ChangeMyNameDatasource.prototype.metricFindQuery = function (query) {
+                BigQueryDatasource.prototype.metricFindQuery = function (query) {
                     throw new Error("Template Variable Support not implemented yet.");
                 };
-                return ChangeMyNameDatasource;
+                return BigQueryDatasource;
             })();
-            exports_1("default", ChangeMyNameDatasource);
+            exports_1("default", BigQueryDatasource);
         }
     }
 });

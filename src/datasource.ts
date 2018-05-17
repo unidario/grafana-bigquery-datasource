@@ -3,7 +3,7 @@
 import _ from 'lodash';
 
 
-export default class ChangeMyNameDatasource {
+export default class BigQueryDatasource {
   name: string;
   url: string;
   authToken: string;
