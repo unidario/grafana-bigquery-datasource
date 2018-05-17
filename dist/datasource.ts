@@ -11,7 +11,7 @@ export default class BigQueryDatasource {
   /** @ngInject */
   constructor(instanceSettings, private backendSrv, private templateSrv, private $q) {
     this.name = instanceSettings.name;
-    this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
+    this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/'+ this.authToken;
     this.authToken = instanceSettings.jsonData.authToken;
   }
 
