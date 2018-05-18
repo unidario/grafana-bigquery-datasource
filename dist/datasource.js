@@ -1,8 +1,15 @@
 ///<reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
-System.register([], function(exports_1) {
+System.register(['lodash', './response_parser'], function(exports_1) {
+    var lodash_1, response_parser_1;
     var BigQueryDatasource;
     return {
-        setters:[],
+        setters:[
+            function (lodash_1_1) {
+                lodash_1 = lodash_1_1;
+            },
+            function (response_parser_1_1) {
+                response_parser_1 = response_parser_1_1;
+            }],
         execute: function() {
             BigQueryDatasource = (function () {
                 /** @ngInject */
@@ -10,9 +17,11 @@ System.register([], function(exports_1) {
                     this.backendSrv = backendSrv;
                     this.templateSrv = templateSrv;
                     this.$q = $q;
+                    this.id = instanceSettings.id;
                     this.name = instanceSettings.name;
                     this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
                     this.authToken = instanceSettings.jsonData.authToken;
+                    this.responseParser = new response_parser_1.default(this.$q);
                 }
                 BigQueryDatasource.prototype.doRequest = function (options) {
                     options.url = this.url;
@@ -36,7 +45,32 @@ System.register([], function(exports_1) {
                     });
                 };
                 BigQueryDatasource.prototype.query = function (options) {
-                    throw new Error("Query Support not implemented yet.");
+                    var _this = this;
+                    var queries = lodash_1.default.filter(options.targets, function (item) {
+                        return item.hide !== true;
+                    }).map(function (item) {
+                        return {
+                            refId: item.refId,
+                            datasourceId: _this.id,
+                            rawSql: item.rawSql.replace("\n", " "),
+                        };
+                    });
+                    if (queries.length === 0) {
+                        return this.$q.when({ data: [] });
+                    }
+                    return this.backendSrv
+                        .datasourceRequest({
+                        //remove hardcoded project later and use variable from configCtrl
+                        url: 'https://www.googleapis.com/bigquery/v2/projects/trv-hs-hackathon-2018-test/queries',
+                        method: 'POST',
+                        data: {
+                            //from: options.range.from.valueOf().toString(),
+                            //to: options.range.to.valueOf().toString(),
+                            query: queries.rawSql,
+                            useLegacySql: false,
+                        },
+                    })
+                        .then(this.responseParser.processQueryResult);
                 };
                 BigQueryDatasource.prototype.annotationQuery = function (options) {
                     throw new Error("Annotation Support not implemented yet.");

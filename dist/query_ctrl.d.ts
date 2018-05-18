@@ -1,11 +1,24 @@
 /// <reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
 import { QueryCtrl } from 'app/plugins/sdk';
+export interface BigQuery {
+    refId: string;
+    format: string;
+    alias: string;
+    rawSql: string;
+}
+export interface QueryMeta {
+    sql: string;
+}
 export declare class BigQueryQueryCtrl extends QueryCtrl {
-    private templateSrv;
     static templateUrl: string;
-    defaults: {};
+    showLastQuerySQL: boolean;
+    formats: any[];
+    target: BigQuery;
+    lastQueryMeta: QueryMeta;
+    lastQueryError: string;
+    showHelp: boolean;
     /** @ngInject **/
-    constructor($scope: any, $injector: any, templateSrv: any);
-    getOptions(query: any): any;
-    onChangeInternal(): void;
+    constructor($scope: any, $injector: any);
+    onDataReceived(dataList: any): void;
+    onDataError(err: any): void;
 }
