@@ -15,14 +15,16 @@ export interface QueryMeta {
   sql: string;
 }
 
-const defaultQuery = `SELECT
-  UNIX_TIMESTAMP(<time_column>) as time_sec,
-  <value column> as value,
-  <series name column> as metric
-FROM <table name>
-WHERE $__timeFilter(time_column)
-ORDER BY <time_column> ASC
-`;
+const defaultQuery = `
+#standardSQL
+SELECT
+  origin, effective_connection_type, form_factor, first_paint
+FROM `chrome-ux-report.all.201711`
+WHERE
+  origin = 'https://www.trivago.com' AND
+  effective_connection_type.name = '4G' AND
+  form_factor.name = 'desktop'
+;`;
 
 export class BigQueryQueryCtrl extends QueryCtrl {
   static templateUrl = 'partials/query.editor.html';
