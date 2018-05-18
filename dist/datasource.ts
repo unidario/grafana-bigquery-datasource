@@ -27,6 +27,19 @@ export default class BigQueryDatasource {
     return this.backendSrv.datasourceRequest(options);
   }
 
+  doQueryRequest(options) {
+    options.url = this.url;
+    options.headers = {
+      Authorization: "Bearer " + this.authToken,
+    };
+    options.method = 'POST';
+    options.data = {
+      useLegacySql: false,
+      query: this.query,
+    }
+    return this.backendSrv.datasourceRequest(options);
+  }
+
   testDatasource() {
     return this.doRequest({
       url: this.url,
@@ -55,20 +68,25 @@ export default class BigQueryDatasource {
       if (queries.length === 0) {
         return this.$q.when({ data: [] });
       }
-
+      return this.doQueryRequest({
+        url: 'https://www.googleapis.com/bigquery/v2/projects/trv-hs-hackathon-2018-test/queries',
+        authToken: this.authToken,
+        query: queries.rawSql,
+      });
+      /*
       return this.backendSrv
         .datasourceRequest({
           //remove hardcoded project later and use variable from configCtrl
           url: 'https://www.googleapis.com/bigquery/v2/projects/trv-hs-hackathon-2018-test/queries',
           method: 'POST',
           data: {
-            //from: options.range.from.valueOf().toString(),
-            //to: options.range.to.valueOf().toString(),
-            query: queries.rawSql,
+            from: options.range.from.valueOf().toString(),
+            to: options.range.to.valueOf().toString(),
+            //query: queries.rawSql,
             useLegacySql: false,
           },
         })
-        .then(this.responseParser.processQueryResult);
+        .then(this.responseParser.processQueryResult);*/
   }
 
   annotationQuery(options) {

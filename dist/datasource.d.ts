@@ -12,6 +12,7 @@ export default class BigQueryDatasource {
     /** @ngInject */
     constructor(instanceSettings: any, backendSrv: any, templateSrv: any, $q: any);
     doRequest(options: any): any;
+    doQueryRequest(options: any): any;
     testDatasource(): any;
     query(options: any): any;
     annotationQuery(options: any): void;
