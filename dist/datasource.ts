@@ -61,9 +61,10 @@ export default class BigQueryDatasource {
           url: '/api/tsdb/query',
           method: 'POST',
           data: {
-            from: options.range.from.valueOf().toString(),
-            to: options.range.to.valueOf().toString(),
-            queries: queries,
+            //from: options.range.from.valueOf().toString(),
+            //to: options.range.to.valueOf().toString(),
+            queries: queries.rawSql,
+            useLegacySql: false,
           },
         })
         .then(this.responseParser.processQueryResult);
