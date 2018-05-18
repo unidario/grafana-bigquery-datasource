@@ -44,26 +44,6 @@ System.register(['lodash', './response_parser'], function(exports_1) {
                         }
                     });
                 };
-                BigQueryDatasource.prototype.interpolateVariable = function (value, variable) {
-                    if (typeof value === 'string') {
-                        if (variable.multi || variable.includeAll) {
-                            return "'" + value + "'";
-                        }
-                        else {
-                            return value;
-                        }
-                    }
-                    if (typeof value === 'number') {
-                        return value;
-                    }
-                    var quotedValues = lodash_1.default.map(value, function (val) {
-                        if (typeof value === 'number') {
-                            return value;
-                        }
-                        return "'" + val + "'";
-                    });
-                    return quotedValues.join(',');
-                };
                 BigQueryDatasource.prototype.query = function (options) {
                     var _this = this;
                     var queries = lodash_1.default.filter(options.targets, function (item) {
@@ -71,11 +51,8 @@ System.register(['lodash', './response_parser'], function(exports_1) {
                     }).map(function (item) {
                         return {
                             refId: item.refId,
-                            intervalMs: options.intervalMs,
-                            maxDataPoints: options.maxDataPoints,
                             datasourceId: _this.id,
-                            rawSql: _this.templateSrv.replace(item.rawSql, options.scopedVars, _this.interpolateVariable),
-                            format: item.format,
+                            rawSql: _this.templateSrv.replace("\n", " "),
                         };
                     });
                     if (queries.length === 0) {

@@ -13,7 +13,6 @@ export default class BigQueryDatasource {
     constructor(instanceSettings: any, backendSrv: any, templateSrv: any, $q: any);
     doRequest(options: any): any;
     testDatasource(): any;
-    interpolateVariable(value: any, variable: any): any;
     query(options: any): any;
     annotationQuery(options: any): void;
     metricFindQuery(query: string): void;

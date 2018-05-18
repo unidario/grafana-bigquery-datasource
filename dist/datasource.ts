@@ -41,40 +41,14 @@ export default class BigQueryDatasource {
     });
   }
 
-  interpolateVariable(value, variable): any {
-    if (typeof value === 'string') {
-      if (variable.multi || variable.includeAll) {
-        return "'" + value + "'";
-      } else {
-        return value;
-      }
-    }
-
-    if (typeof value === 'number') {
-      return value;
-    }
-
-    var quotedValues = _.map(value, function(val): any {
-      if (typeof value === 'number') {
-        return value;
-      }
-
-      return "'" + val + "'";
-    });
-    return quotedValues.join(',');
-  }
-
   query(options) {
       var queries = _.filter(options.targets, item => {
         return item.hide !== true;
       }).map(item => {
         return {
           refId: item.refId,
-          intervalMs: options.intervalMs,
-          maxDataPoints: options.maxDataPoints,
           datasourceId: this.id,
-          rawSql: this.templateSrv.replace(item.rawSql, options.scopedVars, this.interpolateVariable),
-          format: item.format,
+          rawSql: this.templateSrv.replace("\n", " "),
         };
       });
 
