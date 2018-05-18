@@ -48,7 +48,7 @@ export default class BigQueryDatasource {
         return {
           refId: item.refId,
           datasourceId: this.id,
-          rawSql: this.templateSrv.replace("\n", " "),
+          rawSql: item.rawSql.replace("\n", " "),
         };
       });
 

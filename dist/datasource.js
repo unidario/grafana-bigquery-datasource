@@ -52,7 +52,7 @@ System.register(['lodash', './response_parser'], function(exports_1) {
                         return {
                             refId: item.refId,
                             datasourceId: _this.id,
-                            rawSql: _this.templateSrv.replace("\n", " "),
+                            rawSql: item.rawSql.replace("\n", " "),
                         };
                     });
                     if (queries.length === 0) {
