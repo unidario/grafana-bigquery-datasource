@@ -16,7 +16,7 @@ System.register(['lodash', 'app/plugins/sdk'], function(exports_1) {
                 sdk_1 = sdk_1_1;
             }],
         execute: function() {
-            defaultQuery = "#standardSQL\nSELECT\n  origin, effective_connection_type, form_factor, first_paint\nFROM `chrome-ux-report.all.201711`\nWHERE\n  origin = 'https://www.trivago.com' AND\n  effective_connection_type.name = '4G' AND\n  form_factor.name = 'desktop'\n;";
+            defaultQuery = "#standardSQL\nSELECT\n  origin, effective_connection_type, form_factor, first_paint\nFROM `chrome-ux-report.all.201711`\nWHERE\n  origin = 'https://www.trivago.com' AND\n  effective_connection_type.name = '4G' AND\n  form_factor.name = 'desktop'\n  randomString\n;";
             BigQueryQueryCtrl = (function (_super) {
                 __extends(BigQueryQueryCtrl, _super);
                 /** @ngInject **/
@@ -25,17 +25,16 @@ System.register(['lodash', 'app/plugins/sdk'], function(exports_1) {
                     this.target.format = this.target.format || 'time_series';
                     this.target.alias = '';
                     this.formats = [{ text: 'Time series', value: 'time_series' }, { text: 'Table', value: 'table' }];
-                    /* Not used atm
                     if (!this.target.rawSql) {
-                      // special handling when in table panel
-                      if (this.panelCtrl.panel.type === 'table') {
-                        this.target.format = 'table';
-                        this.target.rawSql = 'SELECT 1';
-                      } else {
-                        this.target.rawSql = defaultQuery;
-                      }
+                        // special handling when in table panel
+                        if (this.panelCtrl.panel.type === 'table') {
+                            this.target.format = 'table';
+                            this.target.rawSql = 'SELECT 1';
+                        }
+                        else {
+                            this.target.rawSql = defaultQuery;
+                        }
                     }
-                    */
                     this.panelCtrl.events.on('data-received', this.onDataReceived.bind(this), $scope);
                     this.panelCtrl.events.on('data-error', this.onDataError.bind(this), $scope);
                 }
