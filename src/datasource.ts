@@ -2,7 +2,6 @@
 
 import _ from 'lodash';
 import ResponseParser from './response_parser';
-import BigQuery from '@google-cloud/bigquery';
 
 export default class BigQueryDatasource {
   id: any;
@@ -18,7 +17,6 @@ export default class BigQueryDatasource {
     this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
     this.authToken = instanceSettings.jsonData.authToken;
     this.responseParser = new ResponseParser(this.$q);
-    this.BigQuery = new BigQuery({projectId: 'chrome-ux-report'});
   }
 
   doRequest(options) {
@@ -56,7 +54,7 @@ export default class BigQueryDatasource {
       return value;
     }
 
-    var quotedValues = _.map(value, function(val) {
+    var quotedValues = _.map(value, function(val): any {
       if (typeof value === 'number') {
         return value;
       }

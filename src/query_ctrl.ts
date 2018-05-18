@@ -19,7 +19,7 @@ const defaultQuery = `
 #standardSQL
 SELECT
   origin, effective_connection_type, form_factor, first_paint
-FROM `chrome-ux-report.all.201711`
+FROM \`chrome-ux-report.all.201711\`
 WHERE
   origin = 'https://www.trivago.com' AND
   effective_connection_type.name = '4G' AND
