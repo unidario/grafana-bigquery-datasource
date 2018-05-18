@@ -63,7 +63,7 @@ export default class BigQueryDatasource {
           data: {
             //from: options.range.from.valueOf().toString(),
             //to: options.range.to.valueOf().toString(),
-            queries: queries.rawSql,
+            query: queries.rawSql,
             useLegacySql: false,
           },
         })
