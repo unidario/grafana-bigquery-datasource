@@ -1,18 +1,24 @@
 ///<reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
 
 import _ from 'lodash';
-
+import ResponseParser from './response_parser';
+import BigQuery from '@google-cloud/bigquery';
 
 export default class BigQueryDatasource {
+  id: any;
   name: string;
   url: string;
   authToken: string;
+  responseParser: ResponseParser;
 
   /** @ngInject */
   constructor(instanceSettings, private backendSrv, private templateSrv, private $q) {
+    this.id = instanceSettings.id;
     this.name = instanceSettings.name;
     this.url = 'https://www.googleapis.com/bigquery/v2/projects/chrome-ux-report/datasets/';
     this.authToken = instanceSettings.jsonData.authToken;
+    this.responseParser = new ResponseParser(this.$q);
+    this.BigQuery = new BigQuery({projectId: 'chrome-ux-report'});
   }
 
   doRequest(options) {
@@ -37,9 +43,58 @@ export default class BigQueryDatasource {
     });
   }
 
+  interpolateVariable(value, variable): any {
+    if (typeof value === 'string') {
+      if (variable.multi || variable.includeAll) {
+        return "'" + value + "'";
+      } else {
+        return value;
+      }
+    }
+
+    if (typeof value === 'number') {
+      return value;
+    }
+
+    var quotedValues = _.map(value, function(val) {
+      if (typeof value === 'number') {
+        return value;
+      }
+
+      return "'" + val + "'";
+    });
+    return quotedValues.join(',');
+  }
 
   query(options) {
-    throw new Error("Query Support not implemented yet.");
+      var queries = _.filter(options.targets, item => {
+        return item.hide !== true;
+      }).map(item => {
+        return {
+          refId: item.refId,
+          intervalMs: options.intervalMs,
+          maxDataPoints: options.maxDataPoints,
+          datasourceId: this.id,
+          rawSql: this.templateSrv.replace(item.rawSql, options.scopedVars, this.interpolateVariable),
+          format: item.format,
+        };
+      });
+
+      if (queries.length === 0) {
+        return this.$q.when({ data: [] });
+      }
+
+      return this.backendSrv
+        .datasourceRequest({
+          url: '/api/tsdb/query',
+          method: 'POST',
+          data: {
+            from: options.range.from.valueOf().toString(),
+            to: options.range.to.valueOf().toString(),
+            queries: queries,
+          },
+        })
+        .then(this.responseParser.processQueryResult);
   }
 
   annotationQuery(options) {
