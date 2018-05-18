@@ -44,6 +44,7 @@ export class BigQueryQueryCtrl extends QueryCtrl {
     this.target.alias = '';
     this.formats = [{ text: 'Time series', value: 'time_series' }, { text: 'Table', value: 'table' }];
 
+    /* Not used atm
     if (!this.target.rawSql) {
       // special handling when in table panel
       if (this.panelCtrl.panel.type === 'table') {
@@ -53,7 +54,7 @@ export class BigQueryQueryCtrl extends QueryCtrl {
         this.target.rawSql = defaultQuery;
       }
     }
-
+    */
     this.panelCtrl.events.on('data-received', this.onDataReceived.bind(this), $scope);
     this.panelCtrl.events.on('data-error', this.onDataError.bind(this), $scope);
   }
