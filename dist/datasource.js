@@ -60,7 +60,8 @@ System.register(['lodash', './response_parser'], function(exports_1) {
                     }
                     return this.backendSrv
                         .datasourceRequest({
-                        url: '/api/tsdb/query',
+                        //remove hardcoded project later and use variable from configCtrl
+                        url: 'https://www.googleapis.com/bigquery/v2/projects/trv-hs-hackathon-2018-test/queries',
                         method: 'POST',
                         data: {
                             //from: options.range.from.valueOf().toString(),
