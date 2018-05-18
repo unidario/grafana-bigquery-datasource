@@ -15,8 +15,7 @@ export interface QueryMeta {
   sql: string;
 }
 
-const defaultQuery = `
-#standardSQL
+const defaultQuery = `#standardSQL
 SELECT
   origin, effective_connection_type, form_factor, first_paint
 FROM \`chrome-ux-report.all.201711\`
